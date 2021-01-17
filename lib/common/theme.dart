@@ -4,8 +4,15 @@
 
 import 'package:flutter/material.dart';
 
+const gradientColor1 = Color(0xFF00416a);
+const gradientColor2 = Color(0xFFe4e5e6);
+const primaryColor = Color(0xFF0052d4);
+const secondaryColor = Color(0xFF6FB1FC);
+
 final appTheme = ThemeData(
   primarySwatch: Colors.yellow,
+  primaryColor: primaryColor,
+  scaffoldBackgroundColor: Colors.white,
   textTheme: TextTheme(
     headline1: TextStyle(
       fontFamily: 'Corben',
@@ -15,3 +22,12 @@ final appTheme = ThemeData(
     ),
   ),
 );
+
+final exerciseColors = [
+    "e39a49",
+    "d65769",
+    "2b8896",
+    "df805e",
+    "708778",
+    "c9d5d0"
+];

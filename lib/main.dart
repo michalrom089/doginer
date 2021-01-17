@@ -7,11 +7,10 @@ import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:doginer/common/theme.dart';
-import 'package:doginer/models/cart.dart';
-import 'package:doginer/models/catalog.dart';
-import 'package:doginer/screens/cart.dart';
-import 'package:doginer/screens/catalog.dart';
-import 'package:doginer/screens/login.dart';
+import 'package:doginer/models/course.dart';
+import 'package:doginer/models/accessories.dart';
+import 'package:doginer/screens/main_page.dart';
+import 'package:doginer/screens/welcome.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,31 +23,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
+
     // Using MultiProvider is convenient when providing multiple objects.
+
     return MultiProvider(
       providers: [
-        // In this sample app, CatalogModel never changes, so a simple Provider
-        // is sufficient.
-        Provider(create: (context) => CourseCatalogModel()),
-        // CartModel is implemented as a ChangeNotifier, which calls for the use
-        // of ChangeNotifierProvider. Moreover, CartModel depends
-        // on CatalogModel, so a ProxyProvider is needed.
-        ChangeNotifierProxyProvider<CourseCatalogModel, CartModel>(
-          create: (context) => CartModel(),
-          update: (context, catalog, cart) {
-            cart.catalog = catalog;
-            return cart;
-          },
-        ),
+        ChangeNotifierProvider<CourseNotifier>(create: (_) => CourseNotifier()),
+        ChangeNotifierProvider<AccessoriesNotifier>(create: (_) => AccessoriesNotifier()),
       ],
       child: MaterialApp(
-        title: 'Provider Demo',
+        title: 'Doginer',
         theme: appTheme,
-        initialRoute: '/course_catalog',
+        initialRoute: '/',
         routes: {
-          // '/': (context) => MyLogin(),
-          '/course_catalog': (context) => CourseCatalog(),
-          '/cart': (context) => MyCart(),
+          '/': (context) => WelcomePage(),
+          '/main_page': (context) => MainPage()
         },
       ),
     );

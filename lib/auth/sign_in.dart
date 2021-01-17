@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter/services.dart';
 
 Future<UserCredential> signInWithGoogle() async {
   // Trigger the authentication flow
@@ -16,4 +17,14 @@ Future<UserCredential> signInWithGoogle() async {
 
   // Once signed in, return the UserCredential
   return await FirebaseAuth.instance.signInWithCredential(credential);
+}
+
+String getExceptionText(Exception e) {
+  if (e is PlatformException)  {
+    return e.message;
+  }else if (e is FirebaseAuthException){
+    return e.message;
+  }else{
+   return 'Unknown error occured.';
+  }
 }
