@@ -85,7 +85,7 @@ class _ExerciseModule extends StatelessWidget {
         sliver: new SliverGrid(
             gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
             delegate: SliverChildBuilderDelegate(
-                  (context, index) => ExerciseItem(index, index),
+                  (context, index) => ExerciseItem(index, index+c.getByPosition(courseId).exercises[0].id),
                 childCount: c.getByPosition(courseId).exercises.length,
             ),
           )
@@ -177,7 +177,7 @@ class ExerciseItem extends StatelessWidget {
                         ),
                         Spacer(flex:2),
                         new Text(
-                          "${exercise.level} | test",
+                          "${exercise.level}",
                           style: new TextStyle(color: Colors.white, fontSize: 12,  fontWeight: FontWeight.bold),
                         ),
                         Spacer(flex:4),

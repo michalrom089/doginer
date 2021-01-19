@@ -166,8 +166,11 @@ class _ExercisePage extends State<ExercisePage> {
     );
 
     return Scaffold(
-      body: Column(
-        children: <Widget>[topContent, bottomContent],
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        child: ListView(
+          children: <Widget>[topContent, bottomContent],
+        )
       ),
       bottomNavigationBar: new BottomAppBar(
         child: Padding(
